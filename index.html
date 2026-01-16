@@ -13,8 +13,8 @@
         :root {
             --primary: #6366f1;
             --secondary: #a855f7;
-            --dark-bg: #0f172a;
-            --card-bg: rgba(30, 41, 59, 0.7);
+            --dark-bg: #0b0f1a;
+            --card-bg: rgba(22, 28, 45, 0.7);
         }
 
         body {
@@ -29,35 +29,35 @@
         .geo-shape {
             position: fixed;
             z-index: -1;
-            filter: blur(80px);
-            opacity: 0.4;
+            filter: blur(90px);
+            opacity: 0.25;
             pointer-events: none;
         }
         .shape-left {
-            top: 10%; left: -10%;
-            width: 40vw; height: 40vw;
+            top: 5%; left: -15%;
+            width: 50vw; height: 50vw;
             background: linear-gradient(45deg, var(--primary), transparent);
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            animation: morph 15s ease-in-out infinite;
+            border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;
+            animation: morph 20s ease-in-out infinite;
         }
         .shape-right {
-            bottom: 10%; right: -10%;
-            width: 35vw; height: 35vw;
+            bottom: -5%; right: -15%;
+            width: 45vw; height: 45vw;
             background: linear-gradient(45deg, var(--secondary), transparent);
             border-radius: 50%;
-            animation: morph 12s ease-in-out infinite reverse;
+            animation: morph 18s ease-in-out infinite reverse;
         }
 
         @keyframes morph {
-            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-            50% { border-radius: 50% 50% 20% 80% / 20% 80% 20% 80%; }
-            100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            0% { border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%; }
+            50% { border-radius: 60% 40% 30% 70% / 30% 70% 30% 70%; }
+            100% { border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%; }
         }
 
         .glass {
-            background: rgba(30, 41, 59, 0.6);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .gradient-text {
@@ -67,31 +67,55 @@
         }
 
         input, select, textarea {
-            background: rgba(255, 255, 255, 0.05) !important;
+            background: rgba(255, 255, 255, 0.03) !important;
             border: 1px solid rgba(255, 255, 255, 0.1) !important;
             color: white !important;
+            transition: all 0.3s ease;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--primary) !important;
+            background: rgba(255, 255, 255, 0.07) !important;
         }
 
         .reveal {
             opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease-out;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
         }
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
+
+        .payment-option {
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .payment-option:hover {
+            border-color: rgba(99, 102, 241, 0.5);
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .active-payment {
+            background: rgba(99, 102, 241, 0.15) !important;
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
+        }
+
+        .imp-btn {
+            transition: all 0.3s ease;
+        }
     </style>
 </head>
 <body>
 
-    <!-- Trang trí nền -->
+    <!-- Trang trí nền cố định -->
     <div class="geo-shape shape-left"></div>
     <div class="geo-shape shape-right"></div>
 
     <script>
-        // THAY ID CỦA BẠN VÀO ĐÂY ĐỂ GỬI MAIL TỰ ĐỘNG
-        const MY_FORMSPREE_ID = "maqqnpzd" 
+        // Cấu hình thông tin liên lạc
+        const MY_FORMSPREE_ID = "maqqnpzd"; 
         const MY_GMAIL = "hieeulaivan2023@gmail.com";
     </script>
 
@@ -100,213 +124,269 @@
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
             <div class="flex items-center gap-2 group cursor-pointer" onclick="location.reload()">
                 <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black group-hover:rotate-12 transition-transform shadow-lg shadow-indigo-500/20">S</div>
-                <span class="text-xl font-extrabold tracking-tighter text-white uppercase">Student.Gen</span>
+                <span class="text-xl font-extrabold tracking-tighter text-white uppercase italic">Student.Gen</span>
             </div>
-            <div class="hidden md:flex gap-8 font-medium text-sm text-gray-400">
+            <div class="hidden md:flex gap-8 font-semibold text-xs text-gray-400 uppercase tracking-widest">
                 <a href="#pricing" class="hover:text-white transition-colors">Báo giá</a>
-                <a href="#policy" class="hover:text-white transition-colors">Chính sách</a>
+                <a href="#policy" class="hover:text-white transition-colors">Cam kết</a>
                 <a href="#contact" class="hover:text-white transition-colors">Liên hệ</a>
             </div>
-            <a href="#contact" class="bg-white text-gray-900 px-6 py-2 rounded-full text-sm font-bold hover:scale-105 transition-transform">
-                Bắt đầu
+            <a href="#contact" class="bg-indigo-600 text-white px-6 py-2 rounded-full text-sm font-bold hover:bg-indigo-500 transition-all shadow-lg shadow-indigo-600/20">
+                Gửi yêu cầu
             </a>
         </div>
     </nav>
 
     <!-- Hero -->
     <header class="max-w-7xl mx-auto px-6 pt-24 pb-16 text-center relative">
-        <div class="inline-block px-4 py-1.5 mb-6 rounded-full border border-white/10 glass text-xs font-bold text-indigo-400 tracking-widest uppercase animate__animated animate__fadeIn">
-            Phiên bản 2.0 - Tối ưu cho sinh viên
+        <div class="inline-block px-4 py-1.5 mb-8 rounded-full border border-white/10 glass text-[10px] font-black text-indigo-400 tracking-[0.2em] uppercase animate__animated animate__fadeIn">
+            Nền tảng sáng tạo cho thế hệ mới
         </div>
-        <h1 class="text-5xl md:text-7xl font-black text-white mb-6 leading-tight tracking-tighter animate__animated animate__fadeInUp">
-            Sáng tạo nội dung <br><span class="gradient-text">Chuẩn mực & Trách nhiệm</span>
+        <h1 class="text-5xl md:text-8xl font-black text-white mb-6 leading-[1.1] tracking-tighter animate__animated animate__fadeInUp">
+            Nội dung <span class="gradient-text italic underline decoration-indigo-500/30">Chất lượng</span> <br>Trách nhiệm tuyệt đối
         </h1>
-        <p class="text-gray-400 max-w-2xl mx-auto text-lg mb-10 animate__animated animate__fadeInUp animate__delay-1s">
-            Không chỉ là thiết kế, chúng tôi đồng hành cùng sản phẩm của bạn. Giá cả tối ưu, bảo hành dài hạn.
+        <p class="text-gray-400 max-w-2xl mx-auto text-lg mb-12 font-light animate__animated animate__fadeInUp animate__delay-1s">
+            Chúng tôi hiểu ngân sách của sinh viên. Giá cả minh bạch, thanh toán linh hoạt, hỗ trợ thu hồi sản phẩm nếu không đạt yêu cầu.
         </p>
     </header>
 
-    <!-- Policy Section -->
+    <!-- Policy Cards -->
     <section id="policy" class="max-w-7xl mx-auto px-6 py-12 reveal">
-        <div class="grid md:grid-cols-3 gap-6">
-            <div class="glass p-8 rounded-3xl border border-white/10">
-                <div class="w-12 h-12 bg-emerald-500/20 text-emerald-400 rounded-2xl flex items-center justify-center mb-6">
-                    <i data-lucide="calendar-check"></i>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="glass p-8 rounded-[2rem] border border-white/5 group hover:border-indigo-500/50 transition-all">
+                <div class="w-12 h-12 bg-indigo-500/10 text-indigo-400 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <i data-lucide="calendar-days"></i>
                 </div>
-                <h3 class="text-xl font-bold mb-3 text-white">Hạn trả 5 ngày</h3>
-                <p class="text-gray-400 text-sm">Thanh toán linh hoạt, bạn có tới 5 ngày để hoàn tất chi phí sau khi nhận sản phẩm.</p>
+                <h3 class="text-lg font-bold mb-3">Hạn trả 5 ngày</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">Nhận sản phẩm trước, thanh toán sau trong vòng 5 ngày làm việc.</p>
             </div>
-            <div class="glass p-8 rounded-3xl border border-white/10">
-                <div class="w-12 h-12 bg-blue-500/20 text-blue-400 rounded-2xl flex items-center justify-center mb-6">
+            <div class="glass p-8 rounded-[2rem] border border-white/5 group hover:border-emerald-500/50 transition-all">
+                <div class="w-12 h-12 bg-emerald-500/10 text-emerald-400 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                     <i data-lucide="shield-check"></i>
                 </div>
-                <h3 class="text-xl font-bold mb-3 text-white">Chịu trách nhiệm</h3>
-                <p class="text-gray-400 text-sm">Nếu sản phẩm không đạt yêu cầu hoặc thất bại trong mục đích sử dụng, chúng tôi cam kết xử lý lại.</p>
+                <h3 class="text-lg font-bold mb-3">Chịu trách nhiệm</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">Nếu sản phẩm không đạt kỳ vọng hoặc thất bại, chúng tôi sửa đổi miễn phí.</p>
             </div>
-            <div class="glass p-8 rounded-3xl border border-white/10">
-                <div class="w-12 h-12 bg-red-500/20 text-red-400 rounded-2xl flex items-center justify-center mb-6">
-                    <i data-lucide="refresh-ccw"></i>
+            <div class="glass p-8 rounded-[2rem] border border-white/5 group hover:border-red-500/50 transition-all">
+                <div class="w-12 h-12 bg-red-500/10 text-red-400 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <i data-lucide="rotate-ccw"></i>
                 </div>
-                <h3 class="text-xl font-bold mb-3 text-white">Thu hồi & Hoàn</h3>
-                <p class="text-gray-400 text-sm">Hỗ trợ thu hồi sản phẩm và hoàn phí nếu có sự cố nghiêm trọng từ phía Student.Gen.</p>
+                <h3 class="text-lg font-bold mb-3">Chính sách thu hồi</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">Sẵn sàng thu hồi sản phẩm và hoàn phí nếu có sai sót nghiêm trọng.</p>
+            </div>
+            <div class="glass p-8 rounded-[2rem] border border-white/5 group hover:border-amber-500/50 transition-all">
+                <div class="w-12 h-12 bg-amber-500/10 text-amber-400 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <i data-lucide="banknote"></i>
+                </div>
+                <h3 class="text-lg font-bold mb-3">Tiền mặt trực tiếp</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">Linh hoạt hình thức thanh toán trực tiếp cho các bạn không dùng ngân hàng.</p>
             </div>
         </div>
     </section>
 
-    <!-- New Pricing Section -->
+    <!-- Pricing & Interactive Payment -->
     <section id="pricing" class="max-w-7xl mx-auto px-6 py-20 reveal">
-        <div class="glass p-10 md:p-16 rounded-[3rem] border border-white/10 relative overflow-hidden">
-            <div class="grid lg:grid-cols-2 gap-16 items-center relative z-10">
-                <div class="space-y-8">
-                    <h2 class="text-4xl font-black text-white">Báo giá theo <span class="text-indigo-400">Giá trị</span></h2>
+        <div class="glass p-8 md:p-16 rounded-[3.5rem] border border-white/5 relative overflow-hidden">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-10">
+                    <h2 class="text-4xl font-black">Ước tính <span class="text-indigo-400 italic">Chi phí</span></h2>
                     
-                    <div class="space-y-6">
+                    <div class="space-y-8">
                         <div>
-                            <label class="block text-sm font-bold text-gray-500 mb-3 uppercase tracking-wider">Mục đích sử dụng</label>
-                            <select id="purpose" onchange="updatePrice()" class="w-full p-4 rounded-2xl outline-none focus:border-indigo-500 transition-all">
-                                <option value="personal">Cá nhân (Bài tập, Blog)</option>
-                                <option value="group">Câu lạc bộ / Nhóm trường</option>
-                                <option value="commercial">Thương mại / Dự án lớn</option>
+                            <label class="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-4 block">Mục đích chính</label>
+                            <select id="purpose" onchange="updatePrice()" class="w-full p-5 rounded-2xl outline-none border border-white/10 font-semibold">
+                                <option value="personal">Cá nhân (Học tập, CV, Blog)</option>
+                                <option value="club">CLB / Sự kiện trường học</option>
+                                <option value="commercial">Thương mại / Kinh doanh nhỏ</option>
                             </select>
                         </div>
+                        
                         <div>
-                            <label class="block text-sm font-bold text-gray-500 mb-3 uppercase tracking-wider">Mức độ quan trọng</label>
+                            <label class="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-4 block">Mức độ quan trọng</label>
                             <div class="grid grid-cols-3 gap-3">
-                                <button onclick="setImportance(1)" class="imp-btn p-4 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all active-imp" data-val="1">Bình thường</button>
-                                <button onclick="setImportance(1.5)" class="imp-btn p-4 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all" data-val="1.5">Quan trọng</button>
-                                <button onclick="setImportance(2)" class="imp-btn p-4 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all" data-val="2">Khẩn cấp</button>
+                                <button onclick="setImportance(1, this)" class="imp-btn p-4 rounded-xl border border-white/10 bg-white/5 text-xs font-bold active-imp bg-indigo-600 border-indigo-500">Thường</button>
+                                <button onclick="setImportance(1.5, this)" class="imp-btn p-4 rounded-xl border border-white/10 bg-white/5 text-xs font-bold">Quan trọng</button>
+                                <button onclick="setImportance(2.0, this)" class="imp-btn p-4 rounded-xl border border-white/10 bg-white/5 text-xs font-bold">Rất khẩn cấp</button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-4 block">Hình thức thanh toán</label>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div id="pay-online" onclick="setPayment('Chuyển khoản / Ví điện tử')" class="payment-option p-5 rounded-2xl flex items-center gap-4 active-payment">
+                                    <div class="w-10 h-10 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center"><i data-lucide="smartphone"></i></div>
+                                    <span class="text-sm font-bold">Online</span>
+                                </div>
+                                <div id="pay-cash" onclick="setPayment('Tiền mặt trực tiếp')" class="payment-option p-5 rounded-2xl flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center"><i data-lucide="hand-coins"></i></div>
+                                    <span class="text-sm font-bold">Tiền mặt</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="text-center p-12 bg-indigo-600/10 rounded-[2.5rem] border border-indigo-500/20">
-                    <span class="text-indigo-400 font-bold uppercase text-xs tracking-[0.2em]">Chi phí đề xuất</span>
-                    <div id="price-tag" class="text-8xl font-black text-white my-4">25k</div>
-                    <p class="text-gray-500 text-sm">Giá đã được giảm cho đối tượng Học sinh/Sinh viên</p>
+                <div class="bg-gradient-to-br from-indigo-900/40 to-purple-900/40 p-12 rounded-[3rem] border border-white/10 text-center relative backdrop-blur-md">
+                    <div class="absolute top-6 left-1/2 -translate-x-1/2 px-4 py-1 bg-white/10 rounded-full text-[10px] font-bold text-white uppercase tracking-tighter border border-white/10">Giá hỗ trợ sinh viên</div>
+                    <span class="text-indigo-300 font-bold uppercase text-xs tracking-widest block mb-4 mt-4">Phí dịch vụ dự kiến</span>
+                    <div id="price-tag" class="text-8xl font-black text-white mb-6 animate__animated animate__pulse animate__infinite">20k</div>
+                    <div class="pt-8 border-t border-white/10 space-y-2">
+                        <p id="selected-payment-display" class="text-xs text-gray-400">Thanh toán qua: <span class="text-indigo-400 font-bold">Chuyển khoản / Ví điện tử</span></p>
+                        <p class="text-[10px] text-gray-500 italic">*Giá cuối cùng sẽ được chốt sau khi trao đổi chi tiết*</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Final Contact Form -->
     <section id="contact" class="max-w-4xl mx-auto px-6 py-20 reveal">
-        <div class="text-center mb-12">
-            <h2 class="text-4xl font-black text-white mb-4">Kết nối ngay</h2>
-            <p class="text-gray-400">Chọn phương thức liên hệ thuận tiện nhất cho bạn</p>
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-black text-white">Bắt đầu Dự án</h2>
+            <p class="text-gray-400 mt-4">Điền thông tin và Hiếu sẽ phản hồi ngay lập tức</p>
         </div>
 
-        <div class="space-y-6">
-            <!-- Form gửi ngầm -->
-            <form id="contactForm" class="glass p-10 rounded-[2.5rem] border border-white/10 space-y-4">
-                <div class="grid md:grid-cols-2 gap-4">
-                    <input type="text" name="name" id="f-name" placeholder="Tên của bạn" required class="p-4 rounded-xl outline-none">
-                    <input type="email" name="email" id="f-email" placeholder="Email của bạn" required class="p-4 rounded-xl outline-none">
+        <form id="mainForm" class="glass p-10 rounded-[2.5rem] border border-white/5 space-y-8 shadow-2xl">
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="space-y-3">
+                    <label class="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Tên của bạn</label>
+                    <input type="text" name="customer_name" id="c-name" placeholder="Nguyễn Văn A" required class="w-full p-5 rounded-2xl outline-none">
                 </div>
-                <textarea name="message" id="f-msg" rows="4" placeholder="Bạn đang cần gì?" required class="w-full p-4 rounded-xl outline-none"></textarea>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
-                    <button type="submit" id="apiBtn" class="bg-indigo-600 hover:bg-indigo-500 text-white p-5 rounded-2xl font-black flex items-center justify-center gap-3 transition-all">
-                        <i data-lucide="send"></i> Gửi tự động
-                    </button>
-                    <button type="button" onclick="sendDirectMail()" class="bg-white/5 hover:bg-white/10 border border-white/10 text-white p-5 rounded-2xl font-black flex items-center justify-center gap-3 transition-all">
-                        <i data-lucide="mail"></i> Gửi qua Gmail
-                    </button>
+                <div class="space-y-3">
+                    <label class="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Zalo / SĐT / Email</label>
+                    <input type="text" name="contact_method" id="c-contact" placeholder="Cách để Hiếu tìm thấy bạn..." required class="w-full p-5 rounded-2xl outline-none">
                 </div>
-            </form>
-        </div>
+            </div>
+
+            <div class="space-y-3">
+                <label class="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Chi tiết yêu cầu</label>
+                <textarea name="request_details" id="c-msg" rows="5" placeholder="Hãy mô tả sơ qua về ý tưởng hoặc yêu cầu của bạn..." required class="w-full p-5 rounded-2xl outline-none"></textarea>
+            </div>
+
+            <!-- Các thông tin ẩn gửi kèm -->
+            <input type="hidden" name="estimated_price" id="hidden-price" value="20k">
+            <input type="hidden" name="payment_preference" id="hidden-payment" value="Chuyển khoản / Ví điện tử">
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
+                <button type="submit" id="submitBtn" class="bg-indigo-600 hover:bg-indigo-500 text-white p-6 rounded-2xl font-black text-lg flex items-center justify-center gap-4 transition-all shadow-xl shadow-indigo-600/30">
+                    <i data-lucide="sparkles" class="w-6 h-6"></i> Gửi Yêu Cầu
+                </button>
+                <button type="button" onclick="sendManualGmail()" class="bg-white/5 hover:bg-white/10 border border-white/10 text-white p-6 rounded-2xl font-black text-lg flex items-center justify-center gap-4 transition-all">
+                    <i data-lucide="mail" class="w-6 h-6"></i> Soạn Gmail
+                </button>
+            </div>
+            <p class="text-center text-[10px] text-gray-600 uppercase tracking-widest">Phản hồi thường trong vòng 30 phút - 2 giờ làm việc</p>
+        </form>
     </section>
 
-    <footer class="py-20 text-center text-gray-600 text-xs tracking-widest uppercase">
-        Student.Gen &copy; 2024 • Build for the future
+    <footer class="py-20 text-center opacity-50 border-t border-white/5 mt-20">
+        <div class="text-indigo-400 font-black text-xl mb-4 italic tracking-tighter">Student.Gen</div>
+        <p class="text-[10px] tracking-[0.5em] uppercase">Creative Agency for Students</p>
     </footer>
 
     <script>
         lucide.createIcons();
 
-        let currentImportance = 1;
+        let currentImpMultiplier = 1;
+        let selectedPaymentMethod = "Chuyển khoản / Ví điện tử";
 
-        function setImportance(val) {
-            currentImportance = val;
-            document.querySelectorAll('.imp-btn').forEach(btn => {
-                btn.classList.remove('bg-indigo-600', 'text-white', 'border-indigo-500');
-                if(parseFloat(btn.dataset.val) === val) {
-                    btn.classList.add('bg-indigo-600', 'text-white', 'border-indigo-500');
-                }
+        function setImportance(val, btn) {
+            currentImpMultiplier = val;
+            document.querySelectorAll('.imp-btn').forEach(b => {
+                b.classList.remove('bg-indigo-600', 'border-indigo-500');
             });
+            btn.classList.add('bg-indigo-600', 'border-indigo-500');
             updatePrice();
+        }
+
+        function setPayment(method) {
+            selectedPaymentMethod = method;
+            document.getElementById('selected-payment-display').innerHTML = `Thanh toán qua: <span class="text-indigo-400 font-bold">${method}</span>`;
+            document.getElementById('hidden-payment').value = method;
+            
+            document.getElementById('pay-online').classList.toggle('active-payment', method.includes('Online') || method.includes('Chuyển khoản'));
+            document.getElementById('pay-cash').classList.toggle('active-payment', method.includes('Tiền mặt'));
         }
 
         function updatePrice() {
             const purpose = document.getElementById('purpose').value;
-            let base = 25;
-            if(purpose === 'group') base = 50;
-            if(purpose === 'commercial') base = 120;
+            let basePrice = 20;
+            if(purpose === 'club') basePrice = 40;
+            if(purpose === 'commercial') basePrice = 90;
 
-            const final = Math.round(base * currentImportance);
-            document.getElementById('price-tag').innerText = final + "k";
+            const finalPrice = Math.round(basePrice * currentImpMultiplier);
+            const priceStr = finalPrice + "k";
+            
+            document.getElementById('price-tag').innerText = priceStr;
+            document.getElementById('hidden-price').value = priceStr;
         }
 
-        // ƯU TIÊN 1: GỬI QUA FORMSPREE
-        document.getElementById('contactForm').onsubmit = async function(e) {
+        // Xử lý gửi Form tự động
+        document.getElementById('mainForm').onsubmit = async function(e) {
             e.preventDefault();
-            const btn = document.getElementById('apiBtn');
-            if(MY_FORMSPREE_ID === "YOUR_ID_HERE") {
-                alert("Vui lòng cấu hình Formspree ID hoặc sử dụng nút 'Gửi qua Gmail'");
-                return;
-            }
-
+            const btn = document.getElementById('submitBtn');
             btn.disabled = true;
-            btn.innerText = "Đang xử lý...";
+            btn.innerText = "Đang gửi đi...";
 
             try {
-                const res = await fetch(`https://formspree.io/f/${MY_FORMSPREE_ID}`, {
+                const response = await fetch(`https://formspree.io/f/${MY_FORMSPREE_ID}`, {
                     method: 'POST',
                     body: new FormData(this),
-                    headers: {'Accept': 'application/json'}
+                    headers: { 'Accept': 'application/json' }
                 });
-                if(res.ok) {
-                    alert("Cảm ơn! Hiếu đã nhận được yêu cầu của bạn.");
+                
+                if(response.ok) {
+                    alert("Cảm ơn bạn! Hiếu đã nhận được yêu cầu và sẽ liên hệ lại sớm nhất.");
                     this.reset();
+                    updatePrice();
                 } else {
-                    alert("Có lỗi kỹ thuật, hãy dùng nút 'Gửi qua Gmail' bên cạnh nhé!");
+                    alert("Gửi tự động gặp sự cố nhỏ. Bạn vui lòng sử dụng nút 'Soạn Gmail' để gửi trực tiếp nhé!");
                 }
             } catch (err) {
-                alert("Lỗi kết nối mạng!");
+                alert("Lỗi kết nối mạng. Hãy thử lại hoặc gửi qua Gmail nhé!");
             }
-            btn.disabled = false;
-            btn.innerHTML = `<i data-lucide="send"></i> Gửi tự động`;
-            lucide.createIcons();
-        }
-
-        // DỰ PHÒNG: GỬI TRỰC TIẾP QUA TRÌNH SOẠN THẢO MAIL
-        function sendDirectMail() {
-            const name = document.getElementById('f-name').value || "Khách hàng";
-            const msg = document.getElementById('f-msg').value || "Tôi muốn đặt hàng";
-            const purpose = document.getElementById('purpose').options[document.getElementById('purpose').selectedIndex].text;
             
-            const subject = encodeURIComponent(`[Student.Gen] Đặt hàng từ ${name}`);
+            btn.disabled = false;
+            btn.innerHTML = `<i data-lucide="sparkles" class="w-6 h-6"></i> Gửi Yêu Cầu`;
+            lucide.createIcons();
+        };
+
+        // Xử lý soạn Gmail thủ công
+        function sendManualGmail() {
+            const name = document.getElementById('c-name').value || "[Khách hàng]";
+            const contact = document.getElementById('c-contact').value || "[Chưa điền]";
+            const msg = document.getElementById('c-msg').value || "[Chưa có nội dung]";
+            const price = document.getElementById('hidden-price').value;
+            const payment = selectedPaymentMethod;
+
+            const subject = encodeURIComponent(`[Student.Gen] Yêu cầu mới từ ${name}`);
             const body = encodeURIComponent(
                 `Chào Hiếu,\n\n` +
-                `Tôi tên là: ${name}\n` +
-                `Mục đích sử dụng: ${purpose}\n` +
-                `Nội dung chi tiết: ${msg}\n\n` +
-                `Tôi đã xem báo giá trên web và muốn thảo luận thêm.`
+                `Tôi gửi yêu cầu dịch vụ từ Website Student.Gen:\n` +
+                `- Họ tên: ${name}\n` +
+                `- Liên lạc: ${contact}\n` +
+                `- Giá dự kiến: ${price}\n` +
+                `- Hình thức thanh toán: ${payment}\n\n` +
+                `Nội dung chi tiết:\n${msg}\n\n` +
+                `Mong sớm nhận được phản hồi từ bạn.`
             );
 
             window.location.href = `mailto:${MY_GMAIL}?subject=${subject}&body=${body}`;
         }
 
-        // Reveal logic
+        // Reveal on scroll
         function reveal() {
-            document.querySelectorAll(".reveal").forEach(r => {
-                if (r.getBoundingClientRect().top < window.innerHeight - 100) r.classList.add("active");
+            const reveals = document.querySelectorAll(".reveal");
+            reveals.forEach(r => {
+                const windowHeight = window.innerHeight;
+                const elementTop = r.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    r.classList.add("active");
+                }
             });
         }
         window.addEventListener("scroll", reveal);
-        window.onload = () => { reveal(); setImportance(1); };
+        window.onload = () => { reveal(); updatePrice(); };
     </script>
 </body>
 </html>
-
-
